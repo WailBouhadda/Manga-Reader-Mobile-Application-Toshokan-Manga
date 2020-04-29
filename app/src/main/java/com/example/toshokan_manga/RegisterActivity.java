@@ -16,6 +16,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -23,6 +24,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     EditText editTextusername, editTextemail, editTextpassword, editTextconfirmepassword;
     private FirebaseAuth mAuth;
 
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(mAuth.getCurrentUser() != null){
+
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,11 +47,12 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         findViewById(R.id.button_register).setOnClickListener(this);
         findViewById(R.id.button_back2).setOnClickListener(this);
 
+
     }
     private void registerUser() {
 
-        String username = editTextusername.getText().toString().trim();
-        String email = editTextemail.getText().toString().trim();
+        final String username = editTextusername.getText().toString().trim();
+        final String email = editTextemail.getText().toString().trim();
         String password = editTextpassword.getText().toString().trim();
         String confirmepassword = editTextconfirmepassword.getText().toString().trim();
 
@@ -89,12 +99,38 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                progressBar.setVisibility(View.GONE);
+
+
+
+
                 if (task.isSuccessful()){
-                    Toast.makeText(getApplicationContext(),"Registration Successfull",Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(RegisterActivity.this,HomeActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
+
+                    User user = new User(
+                            username,
+                            email
+                    );
+
+
+                    FirebaseDatabase.getInstance().getReference("Users")
+                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                            .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+
+
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+
+                            progressBar.setVisibility(View.GONE);
+
+
+                            if (task.isSuccessful()) {
+                                Toast.makeText(getApplicationContext(),"Registration Successfull",Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(RegisterActivity.this,HomeActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(intent);
+                            }
+                        }
+                    });
+
                 }else{
                     if (task.getException() instanceof FirebaseAuthUserCollisionException){
                         Toast.makeText(getApplicationContext(),"Account Already Existed",Toast.LENGTH_SHORT).show();
