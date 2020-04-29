@@ -127,6 +127,13 @@
                     android:textAlignment="center"
                     android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
             </LinearLayout>
+            <ProgressBar
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:visibility="gone"
+                android:id="@id/progressbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"></ProgressBar>
 
         </RelativeLayout>
 

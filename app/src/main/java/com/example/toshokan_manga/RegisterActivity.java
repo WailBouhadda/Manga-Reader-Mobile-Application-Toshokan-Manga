@@ -8,28 +8,35 @@ import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
+    ProgressBar progressBar;
     EditText editTextusername, editTextemail, editTextpassword, editTextconfirmepassword;
     private FirebaseAuth mAuth;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        progressBar = (ProgressBar) findViewById(R.id.progressbar);
         editTextusername = (EditText) findViewById(R.id.text_name);
         editTextemail = (EditText) findViewById(R.id.text_email);
         editTextpassword = (EditText) findViewById(R.id.edit_text_password);
         editTextconfirmepassword = (EditText) findViewById(R.id.edit_text_confirmepassword);
         mAuth = FirebaseAuth.getInstance();
         findViewById(R.id.button_register).setOnClickListener(this);
+        findViewById(R.id.button_back2).setOnClickListener(this);
 
     }
     private void registerUser() {
@@ -45,26 +52,42 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             editTextemail.requestFocus();
             return;
         }
+
         if (email.isEmpty()){
             editTextemail.setError("Email Required");
             editTextemail.requestFocus();
             return;
         }
+
         if (password.isEmpty()){
             editTextpassword.setError("Password Required");
             editTextpassword.requestFocus();
             return;
         }
+
         if (password.length()<8) {
             editTextpassword.setError("Minimum is 8 characteres");
             editTextpassword.requestFocus();
             return;
         }
+        progressBar.setVisibility(View.VISIBLE);
+
         mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+                progressBar.setVisibility(View.GONE);
                 if (task.isSuccessful()){
                     Toast.makeText(getApplicationContext(),"Registration Successfull",Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(RegisterActivity.this,HomeActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                }else{
+                    if (task.getException() instanceof FirebaseAuthUserCollisionException){
+                        Toast.makeText(getApplicationContext(),"Account Already Existed",Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+
+                    }
                 }
             }
         });
