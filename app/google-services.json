@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "980832203199",
+    "firebase_url": "https://toshokanmanga1.firebaseio.com",
+    "project_id": "toshokanmanga1",
+    "storage_bucket": "toshokanmanga1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:980832203199:android:854b3a66eba2a7f16ab10a",
+        "android_client_info": {
+          "package_name": "com.example.toshokan_manga"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "980832203199-uiif057nv7e0nqjq08jla86pm1rijhj6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCS8YamafsxLiBuonxtHxxbyjfVKpAlT_k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "980832203199-uiif057nv7e0nqjq08jla86pm1rijhj6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
