@@ -46,6 +46,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         String password = editTextpassword.getText().toString().trim();
         String confirmepassword = editTextconfirmepassword.getText().toString().trim();
 
+
+
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
 
             editTextemail.setError("Email Invalide");
@@ -70,7 +72,19 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             editTextpassword.requestFocus();
             return;
         }
+        if(!password.equals(confirmepassword)){
+            editTextconfirmepassword.setError("Password Doesn't Match");
+            editTextconfirmepassword.requestFocus();
+            return;
+        }
+
+        
+
+
         progressBar.setVisibility(View.VISIBLE);
+
+
+
 
         mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
