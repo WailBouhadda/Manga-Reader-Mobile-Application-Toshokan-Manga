@@ -73,18 +73,14 @@
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/text_view_Skipe"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:text="Skipe"
-                    android:textAlignment="center"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
-
-
-
-
-
+                android:id="@+id/text_view_Skip"
+                android:layout_width="106dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:drawableRight="@drawable/ic_enter"
+                android:text="Skip"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
 
             </LinearLayout>
 

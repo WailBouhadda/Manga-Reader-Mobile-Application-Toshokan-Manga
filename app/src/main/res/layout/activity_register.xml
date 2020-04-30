@@ -122,7 +122,7 @@
 
                     <Button
                         android:id="@+id/button_back2"
-                        android:layout_width="102dp"
+                        android:layout_width="115dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="22dp"
                         android:layout_weight="1"
@@ -148,28 +148,23 @@
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/text_view_Skipe"
+                    android:id="@+id/text_view_Skip"
                     android:layout_width="106dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:drawableRight="@drawable/ic_enter"
-                    android:text="Skipe"
+                    android:text="Skip"
                     android:textAlignment="center"
                     android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
             </LinearLayout>
-            <ProgressBar
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"
-                android:visibility="gone"
-                android:id="@id/progressbar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"></ProgressBar>
 
         </RelativeLayout>
 
     </RelativeLayout>
 
     <ProgressBar
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
         android:id="@+id/progressbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

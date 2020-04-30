@@ -27,6 +27,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        findViewById(R.id.text_view_Skip).setOnClickListener(this);
         progressBar = (ProgressBar) findViewById(R.id.progressbar);
         editTextemail = (EditText) findViewById(R.id.text_email);
         editTextpassword = (EditText) findViewById(R.id.edit_text_password);
@@ -92,6 +93,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.button_sign_in:
                 loginUser();
+                break;
+            case  R.id.text_view_Skip:
+                startActivity(new Intent(this,HomeActivity.class));
                 break;
         }
 

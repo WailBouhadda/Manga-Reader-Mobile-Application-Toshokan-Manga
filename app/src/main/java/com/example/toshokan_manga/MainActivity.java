@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        findViewById(R.id.text_view_Skip).setOnClickListener(this);
         findViewById(R.id.bttn_IRegister).setOnClickListener(this);
         findViewById(R.id.bttn_ILogin).setOnClickListener(this);
     }
@@ -25,6 +26,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             break;
         case  R.id.bttn_ILogin:
             startActivity(new Intent(this,LoginActivity.class));
+            break;
+        case  R.id.text_view_Skip:
+            startActivity(new Intent(this,HomeActivity.class));
+            break;
     }
     }
 }

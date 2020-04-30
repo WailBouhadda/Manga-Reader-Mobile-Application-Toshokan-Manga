@@ -9,6 +9,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -21,6 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
     ProgressBar progressBar;
+    TextView textViewskipe;
     EditText editTextusername, editTextemail, editTextpassword, editTextconfirmepassword;
     private FirebaseAuth mAuth;
 
@@ -38,6 +40,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        findViewById(R.id.text_view_Skip).setOnClickListener(this);
         progressBar = (ProgressBar) findViewById(R.id.progressbar);
         editTextusername = (EditText) findViewById(R.id.text_name);
         editTextemail = (EditText) findViewById(R.id.text_email);
@@ -125,17 +128,18 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                             if (task.isSuccessful()) {
                                 Toast.makeText(getApplicationContext(),"Registration Successfull",Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(RegisterActivity.this,HomeActivity.class);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP & Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(intent);
                             }
                         }
                     });
 
                 }else{
+                    progressBar.setVisibility(View.GONE);
                     if (task.getException() instanceof FirebaseAuthUserCollisionException){
-                        Toast.makeText(getApplicationContext(),"Account Already Existed",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"Account Already Existed",Toast.LENGTH_LONG).show();
                     }else{
-                        Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_LONG).show();
 
                     }
                 }
@@ -150,6 +154,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 break;
             case  R.id.button_back2:
                 startActivity(new Intent(this, MainActivity.class));
+                break;
+            case  R.id.text_view_Skip:
+                startActivity(new Intent(this,HomeActivity.class));
                 break;
         }
     }
