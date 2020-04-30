@@ -126,10 +126,12 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
 
                             if (task.isSuccessful()) {
+
                                 Toast.makeText(getApplicationContext(),"Registration Successfull",Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(RegisterActivity.this,HomeActivity.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP & Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(intent);
+                                finish();
                             }
                         }
                     });
@@ -153,9 +155,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 registerUser();
                 break;
             case  R.id.button_back2:
+                finish();
                 startActivity(new Intent(this, MainActivity.class));
                 break;
             case  R.id.text_view_Skip:
+                finish();
                 startActivity(new Intent(this,HomeActivity.class));
                 break;
         }
