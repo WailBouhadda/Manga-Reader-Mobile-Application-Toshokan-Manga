@@ -38,9 +38,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
     switch (v.getId()){
         case R.id.bttn_IRegister:
+            finish();
             startActivity(new Intent(this,RegisterActivity.class));
             break;
         case  R.id.bttn_ILogin:
+            finish();
             startActivity(new Intent(this,LoginActivity.class));
             break;
         case  R.id.text_view_Skip:

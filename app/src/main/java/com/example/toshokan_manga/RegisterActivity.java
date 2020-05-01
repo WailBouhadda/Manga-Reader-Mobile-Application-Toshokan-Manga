@@ -28,14 +28,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        if(mAuth.getCurrentUser() != null){
-
-        }
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
@@ -132,6 +124,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP & Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(intent);
                                 finish();
+
                             }
                         }
                     });
@@ -147,6 +140,16 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 }
             }
         });
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        if(mAuth.getCurrentUser() != null){
+            finish();
+            startActivity(new Intent(this, HomeActivity.class));
+
+        }
     }
     @Override
     public void onClick(View v) {
