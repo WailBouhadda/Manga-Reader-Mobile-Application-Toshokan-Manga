@@ -36,6 +36,7 @@ public class HomeActivity extends AppCompatActivity {
     FirebaseUser user;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -73,6 +74,7 @@ public class HomeActivity extends AppCompatActivity {
 
         if (mAuth.getCurrentUser() != null){
 
+
             textViewemail = (TextView)headerView.findViewById(R.id.email_txt);
         textViewname = (TextView)headerView.findViewById(R.id.name_txt);
         reference = FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid());
@@ -84,6 +86,8 @@ public class HomeActivity extends AppCompatActivity {
                 textViewemail.setText(email);
                 textViewname.setText(username);
 
+
+
             }
 
             @Override
@@ -93,8 +97,6 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
         }else{
-            textViewemail.setText("Username");
-            textViewname.setText("Email@email.com");
         }
 
 
