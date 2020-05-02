@@ -30,13 +30,15 @@ import androidx.appcompat.widget.Toolbar;
 public class HomeActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     TextView textViewname,textViewemail;
+    private FirebaseAuth mAuth;
+    View headerView;
+    DatabaseReference reference;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-
-
+        mAuth = FirebaseAuth.getInstance();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
@@ -52,7 +54,10 @@ public class HomeActivity extends AppCompatActivity {
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
-        View headerView = navigationView.getHeaderView(0);
+        headerView = navigationView.getHeaderView(0);
+
+        loadUserInformation();
+
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
                 .setDrawerLayout(drawer)
@@ -60,6 +65,24 @@ public class HomeActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+    }
+
+    private void loadUserInformation() {
+        textViewemail = (TextView)headerView.findViewById(R.id.email_txt);
+        textViewname = (TextView)headerView.findViewById(R.id.name_txt);
+        reference = FirebaseDatabase.getInstance().getReference();
+        reference.child(new Add)
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (mAuth.getCurrentUser() != null){
+            textViewemail.setText(user.getEmail());
+            textViewname.setText(user.getDisplayName());
+        }else{
+            textViewemail.setText(null);
+            textViewname.setText(null);
+        }
+
+
+
     }
 
 

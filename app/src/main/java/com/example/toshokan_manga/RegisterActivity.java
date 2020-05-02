@@ -46,7 +46,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
     private void registerUser() {
 
-        final String username = editTextusername.getText().toString().trim();
+        final String displayname = editTextusername.getText().toString().trim();
         final String email = editTextemail.getText().toString().trim();
         String password = editTextpassword.getText().toString().trim();
         String confirmepassword = editTextconfirmepassword.getText().toString().trim();
@@ -101,7 +101,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 if (task.isSuccessful()){
 
                     User user = new User(
-                            username,
+                            displayname,
                             email
                     );
 
