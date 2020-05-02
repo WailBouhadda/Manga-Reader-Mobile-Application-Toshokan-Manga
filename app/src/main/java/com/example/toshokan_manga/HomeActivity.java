@@ -33,12 +33,15 @@ public class HomeActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     View headerView;
     DatabaseReference reference;
+    FirebaseUser user;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
+
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
@@ -66,19 +69,32 @@ public class HomeActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
     }
-
     private void loadUserInformation() {
-        textViewemail = (TextView)headerView.findViewById(R.id.email_txt);
-        textViewname = (TextView)headerView.findViewById(R.id.name_txt);
-        reference = FirebaseDatabase.getInstance().getReference();
-        reference.child(new Add)
-        FirebaseUser user = mAuth.getCurrentUser();
+
         if (mAuth.getCurrentUser() != null){
-            textViewemail.setText(user.getEmail());
-            textViewname.setText(user.getDisplayName());
+
+            textViewemail = (TextView)headerView.findViewById(R.id.email_txt);
+        textViewname = (TextView)headerView.findViewById(R.id.name_txt);
+        reference = FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid());
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String username = dataSnapshot.child("username").getValue().toString();
+                String email = dataSnapshot.child("email").getValue().toString();
+                textViewemail.setText(email);
+                textViewname.setText(username);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                Toast.makeText(getApplicationContext(),databaseError.getMessage(),Toast.LENGTH_LONG).show();
+            }
+        });
         }else{
-            textViewemail.setText(null);
-            textViewname.setText(null);
+            textViewemail.setText("Username");
+            textViewname.setText("Email@email.com");
         }
 
 
