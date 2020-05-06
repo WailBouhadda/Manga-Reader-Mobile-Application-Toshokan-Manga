@@ -2,6 +2,7 @@ package com.example.toshokan_manga;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.TextView;
@@ -34,6 +35,7 @@ public class HomeActivity extends AppCompatActivity {
     View headerView;
     DatabaseReference reference;
     FirebaseUser user;
+    private NavigationView navigationView;
 
 
 
@@ -45,6 +47,8 @@ public class HomeActivity extends AppCompatActivity {
 
 
         super.onCreate(savedInstanceState);
+
+
         setContentView(R.layout.activity_home);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -116,5 +120,6 @@ public class HomeActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
-    }}
+    }
+}
 

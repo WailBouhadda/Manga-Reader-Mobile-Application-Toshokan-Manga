@@ -11,16 +11,19 @@
     <RelativeLayout
         android:id="@+id/loginLayout"
         android:layout_width="match_parent"
-        android:layout_height="169dp"
+        android:layout_height="308dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="72dp">
+        android:layout_marginStart="0dp"
+        android:layout_marginBottom="58dp">
 
         <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="349dp"
+            android:layout_height="205dp"
+            android:layout_alignParentTop="true"
             android:layout_alignParentBottom="true"
             android:layout_marginLeft="30dp"
+            android:layout_marginTop="0dp"
             android:layout_marginRight="30dp"
             android:layout_marginBottom="-6dp"
             android:background="#72FFFFFF"
@@ -29,7 +32,7 @@
             android:padding="20dp">
 
             <LinearLayout
-                android:layout_width="fill_parent"
+                android:layout_width="302dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:paddingTop="30dp">
@@ -37,7 +40,50 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="71dp">
+                    android:layout_height="157dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <com.facebook.login.widget.LoginButton
+
+                        android:id="@+id/loginButtonFB"
+                        android:layout_width="250dp"
+                        android:layout_height="40dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.507"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/google_sign_in"
+                        app:layout_constraintVertical_bias="0.142" />
+
+                    <com.google.android.gms.common.SignInButton
+                        android:id="@+id/google_sign_in"
+                        android:layout_width="250dp"
+                        android:layout_height="40dp"
+                        android:text="Continue with Google"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.551"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.142" />
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="Or"
+                        android:textAlignment="center"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:layout_editor_absoluteY="137dp" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="59dp">
 
                     <Button
                         android:id="@+id/bttn_ILogin"
@@ -52,7 +98,7 @@
                         android:textSize="13sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.017"
+                        app:layout_constraintHorizontal_bias="0.116"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -73,7 +119,7 @@
                         app:layout_constraintHorizontal_bias="1.0"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.457" />
+                        app:layout_constraintVertical_bias="0.521" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
@@ -94,6 +140,8 @@
     </RelativeLayout>
 
     <ProgressBar
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
         android:id="@+id/progressbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

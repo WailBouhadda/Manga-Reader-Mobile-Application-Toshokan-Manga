@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
+
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
@@ -17,4 +18,18 @@
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_slideshow" />
     </group>
+    <item
+        android:title="principale liste">
+        <menu>
+            <item
+                android:id="@+id/nav_Login"
+                android:icon="?android:attr/textCheckMarkInverse"
+                android:title="Log in"></item>
+            <item
+                android:id="@+id/nav_Logout"
+                android:title="Log out"></item>
+
+
+        </menu>
+    </item>
 </menu>
