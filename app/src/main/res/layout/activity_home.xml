@@ -19,7 +19,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        android:scrollbarTrackVertical="#00ba70"
+        android:scrollbarTrackVertical="@color/browser_actions_divider_color"
         app:headerLayout="@layout/nav_header_home"
         app:itemIconTint="#00ba70"
         app:menu="@menu/activity_home_drawer" />

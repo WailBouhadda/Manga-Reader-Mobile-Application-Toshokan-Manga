@@ -192,12 +192,12 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="61dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="59dp"
-        android:layout_marginBottom="192dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="69dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="153dp"
         android:gravity="center_horizontal"
-        android:text="New User Registration"
+        android:text="Register"
         android:textColor="#fff"
         android:textSize="26sp"
         android:textStyle="bold" />
@@ -206,11 +206,13 @@
         android:id="@+id/imageView2"
         android:layout_width="311dp"
         android:layout_height="229dp"
+        android:layout_alignBottom="@+id/RegisterLayout"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="128dp"
         android:layout_marginEnd="50dp"
+        android:layout_marginBottom="330dp"
         android:src="@mipmap/ic_launcher_foreground" />
 
 </RelativeLayout>
