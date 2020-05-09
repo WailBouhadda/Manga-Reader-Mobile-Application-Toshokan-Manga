@@ -19,7 +19,9 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
+        android:scrollbarTrackVertical="#00ba70"
         app:headerLayout="@layout/nav_header_home"
+        app:itemIconTint="#00ba70"
         app:menu="@menu/activity_home_drawer" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

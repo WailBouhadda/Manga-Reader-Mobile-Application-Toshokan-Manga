@@ -89,7 +89,7 @@
                         android:layout_width="76dp"
                         android:layout_height="35dp"
                         android:layout_weight="1"
-                        android:background="#00BFA5"
+                        android:background="#00ba70"
                         android:drawableLeft="@drawable/ic_left_arrow"
                         android:text="Login"
                         android:textAllCaps="false"
@@ -106,7 +106,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="36dp"
                         android:layout_margin="22dp"
-                        android:background="#00BFA5"
+                        android:background="#00ba70"
                         android:drawableRight="@drawable/ic_right_arrow"
                         android:padding="5dp"
                         android:text="Register"
@@ -155,11 +155,18 @@
         android:layout_alignParentStart="true"
         android:layout_marginStart="-3dp"
         android:layout_marginEnd="0dp"
-        android:layout_marginBottom="226dp"
+        android:layout_marginBottom="208dp"
         android:gravity="center_horizontal"
         android:text="Account Login"
         android:textColor="#fff"
         android:textSize="26sp"
         android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="125dp"
+        android:layout_height="121dp"
+        android:layout_centerHorizontal="true"
+        app:srcCompat="@mipmap/ic_launcher_foreground" />
 
 </RelativeLayout>
