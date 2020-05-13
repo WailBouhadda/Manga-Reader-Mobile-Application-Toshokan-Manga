@@ -180,9 +180,9 @@
         android:layout_above="@+id/loginLayout"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="151dp"
+        android:layout_marginTop="71dp"
         android:layout_marginEnd="-20dp"
-        android:layout_marginBottom="140dp"
+        android:layout_marginBottom="220dp"
         android:gravity="center_horizontal"
         android:text="Login"
         android:textColor="#fff"
@@ -191,13 +191,17 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="311dp"
-        android:layout_height="229dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="196dp"
-        android:layout_marginEnd="50dp"
+        android:layout_marginStart="-1dp"
+        android:layout_marginTop="105dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="322dp"
         android:src="@mipmap/ic_launcher_foreground" />
 
 </RelativeLayout>
