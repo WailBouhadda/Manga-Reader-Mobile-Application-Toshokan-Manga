@@ -29,7 +29,10 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.Arrays;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -56,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         mAuth = FirebaseAuth.getInstance();
 
-      progressBar = findViewById(R.id.progrbar);
+      progressBar = findViewById(R.id.progressbar);
         signInButtonggle = findViewById(R.id.google_sign_in);
         findViewById(R.id.text_view_Skip).setOnClickListener(this);
         findViewById(R.id.bttn_IRegister).setOnClickListener(this);
@@ -66,7 +69,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
        callbackManager = CallbackManager.Factory.create();
         FacebookSdk.sdkInitialize(getApplicationContext());
         facebooklogin.setPermissions(Arrays.asList("email"));
-
 
 // Initialize Facebook Login button
         mCallbackManager = CallbackManager.Factory.create();
@@ -94,6 +96,36 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 // ...
     }
 
+    private void addUser() {
+progressBar.setVisibility(View.VISIBLE);
+        username = Objects.requireNonNull(mAuth.getCurrentUser()).getDisplayName();
+        email = mAuth.getCurrentUser().getEmail();
+        User user = new User(
+                username,
+                email
+        );
+
+
+        FirebaseDatabase.getInstance().getReference("Users")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+
+
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+
+                progressBar.setVisibility(View.GONE);
+
+
+                if (task.isSuccessful()) {
+
+                    progressBar.setVisibility(View.GONE);
+                    Toast.makeText(getApplicationContext(),"Registration Successfull",Toast.LENGTH_SHORT).show();
+
+                }
+            }
+        });
+    }
 
 
     private void handleFacebookAccessToken(AccessToken token) {
@@ -108,6 +140,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
+                            addUser();
                             updateUI();
                         } else {
                             // If sign in fails, display a message to the user.
@@ -146,7 +179,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
-
            updateUI();
 
         }
@@ -166,6 +198,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+
     //Buttons Click
 
     @Override
@@ -183,10 +216,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             finish();
             startActivity(new Intent(this,HomeActivity.class));
             break;
-        case R.id.loginButtonFB:
-            break;
-            
-
     }
     }
 

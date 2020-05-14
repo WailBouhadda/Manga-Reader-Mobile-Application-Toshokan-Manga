@@ -85,10 +85,12 @@ public class HomeActivity extends AppCompatActivity {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String username = dataSnapshot.child("username").getValue().toString();
+             String username = dataSnapshot.child("username").getValue().toString();
                 String email = dataSnapshot.child("email").getValue().toString();
                 textViewemail.setText(email);
                 textViewname.setText(username);
+
+             Toast.makeText(HomeActivity.this,"youre logged in",Toast.LENGTH_LONG).show();
 
 
 
@@ -100,7 +102,6 @@ public class HomeActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),databaseError.getMessage(),Toast.LENGTH_LONG).show();
             }
         });
-        }else{
         }
 
 
