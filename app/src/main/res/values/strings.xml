@@ -13,6 +13,11 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+    <string name="account">Account</string>
+    <string name="latestviews">Latest Views</string>
+    <string name="mangalist">Manga List</string>
+    <string name="favorite">Favorite</string>
+
 
     <string name="home_second">Home Second</string>
     <string name="title_activity_main2">Main2Activity</string>

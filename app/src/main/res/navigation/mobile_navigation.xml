@@ -30,14 +30,25 @@
     </fragment>
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.toshokan_manga.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_favorite"
+        android:name="com.example.toshokan_manga.ui.favorite.FavoriteFragment"
+        android:label="@string/favorite"
+        tools:layout="@layout/favorite_fragment" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.toshokan_manga.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_mangaliste"
+        android:name="com.example.toshokan_manga.ui.mangalist.MangaListFragment"
+        android:label="@string/mangalist"
+        tools:layout="@layout/manga_list_fragment" />
+    <fragment
+        android:id="@+id/nav_latestviews"
+        android:name="com.example.toshokan_manga.ui.latestviews.LatestViewsFragment"
+        android:label="@string/latestviews"
+        tools:layout="@layout/latest_views_fragment" />
+    <fragment
+        android:id="@+id/nav_account"
+        android:name="com.example.toshokan_manga.ui.account.AccountFragment"
+        android:label="@string/account"
+        tools:layout="@layout/account_fragment" />
+
 </navigation>
