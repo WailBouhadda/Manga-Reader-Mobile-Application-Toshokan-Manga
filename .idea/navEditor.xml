@@ -20,7 +20,7 @@
                       </LayoutPositions>
                     </value>
                   </entry>
-                  <entry key="nav_gallery">
+                  <entry key="nav_favorite">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
@@ -74,19 +74,19 @@
                       </LayoutPositions>
                     </value>
                   </entry>
-                  <entry key="nav_sl">
+                  <entry key="nav_latestviews">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
                             <option name="x" value="12" />
-                            <option name="y" value="12" />
+                            <option name="y" value="368" />
                           </Point>
                         </option>
                       </LayoutPositions>
                     </value>
                   </entry>
-                  <entry key="nav_slideshow">
+                  <entry key="nav_mangaliste">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
