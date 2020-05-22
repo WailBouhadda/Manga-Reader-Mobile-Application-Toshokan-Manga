@@ -122,27 +122,27 @@
 
             <com.facebook.login.widget.LoginButton
                 android:id="@+id/facebookbttn"
-                android:layout_width="91dp"
-                android:layout_height="42dp"
+                android:layout_width="203dp"
+                android:layout_height="35dp"
                 android:layout_centerVertical="true"
-                android:background="@drawable/ic_facebook1"
-                android:foreground="@drawable/ic_facebook1"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.308"
+                app:layout_constraintHorizontal_bias="0.449"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.609" />
 
-            <Button
+            <com.google.android.gms.common.SignInButton
+
                 android:id="@+id/googlebttn"
-                android:layout_width="90dp"
-                android:layout_height="90dp"
+                android:layout_width="206dp"
+                android:layout_height="127dp"
                 android:layout_centerVertical="true"
-                android:background="@drawable/ic_google"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/facebookbttn"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.428" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </RelativeLayout>
 
