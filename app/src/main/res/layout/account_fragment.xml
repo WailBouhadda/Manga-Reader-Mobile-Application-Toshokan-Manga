@@ -122,8 +122,8 @@
 
             <com.facebook.login.widget.LoginButton
                 android:id="@+id/facebookbttn"
-                android:layout_width="91dp"
-                android:layout_height="42dp"
+                android:layout_width="41dp"
+                android:layout_height="382dp"
                 android:layout_centerVertical="true"
                 android:background="@drawable/ic_facebook1"
                 android:foreground="@drawable/ic_facebook1"
