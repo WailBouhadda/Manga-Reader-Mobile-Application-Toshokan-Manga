@@ -101,7 +101,7 @@ public class HomeActivity extends AppCompatActivity {
                 }
             }
         });
-        String URL = "https://www.mangaeden.com/api/";
+        String URL = "https://www.mangaeden.com/api/0/";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         JsonObjectRequest objectRequest= new JsonObjectRequest(
                 Request.Method.GET,

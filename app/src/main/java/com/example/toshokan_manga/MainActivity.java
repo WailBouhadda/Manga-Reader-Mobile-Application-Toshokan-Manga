@@ -2,15 +2,20 @@ package com.example.toshokan_manga;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Adapter;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.toshokan_manga.Model.Manga;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -37,7 +42,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -113,6 +120,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 // ...
+
+
     }
 
     private void addUser()
