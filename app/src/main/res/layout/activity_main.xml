@@ -87,8 +87,8 @@
 
                     <Button
                         android:id="@+id/bttn_ILogin"
-                        android:layout_width="76dp"
-                        android:layout_height="35dp"
+                        android:layout_width="113dp"
+                        android:layout_height="36dp"
                         android:layout_weight="1"
                         android:background="#00ba70"
                         android:drawableLeft="@drawable/ic_left_arrow"
@@ -96,6 +96,7 @@
                         android:textAllCaps="false"
                         android:textColor="#fff"
                         android:textSize="13sp"
+                        app:backgroundTint="#00ba70"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.116"
@@ -104,8 +105,8 @@
 
                     <Button
                         android:id="@+id/bttn_IRegister"
-                        android:layout_width="wrap_content"
-                        android:layout_height="36dp"
+                        android:layout_width="100dp"
+                        android:layout_height="37dp"
                         android:layout_margin="22dp"
                         android:background="#00ba70"
                         android:drawableRight="@drawable/ic_right_arrow"
@@ -114,6 +115,7 @@
                         android:textAllCaps="false"
                         android:textColor="#fff"
                         android:textSize="13sp"
+                        app:backgroundTint="#00ba70"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="1.0"
