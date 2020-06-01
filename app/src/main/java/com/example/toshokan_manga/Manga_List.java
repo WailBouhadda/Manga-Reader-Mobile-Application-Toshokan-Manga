@@ -20,6 +20,7 @@ public class Manga_List extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.manga__list_activity);
         if (savedInstanceState == null) {
@@ -27,6 +28,7 @@ public class Manga_List extends AppCompatActivity {
                     .replace(R.id.container, MangaListFragment.newInstance())
                     .commitNow();
         }
+
 
         //makes the manga layout transparent
         Window w =getWindow();
@@ -43,5 +45,6 @@ public class Manga_List extends AppCompatActivity {
         CustomAdapter adapter = new CustomAdapter(this,mlist);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
     }
 }

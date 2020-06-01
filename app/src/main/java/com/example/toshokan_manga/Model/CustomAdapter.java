@@ -14,7 +14,7 @@ import com.example.toshokan_manga.R;
 
 import java.util.List;
 
-public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.myViewHolder> {
+public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
 
     Context mContext;
     List<Manga> mData;
@@ -26,15 +26,15 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.myViewHold
 
     @NonNull
     @Override
-    public myViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         LayoutInflater inflater = LayoutInflater.from(mContext);
         View v = inflater.inflate(R.layout.manga_layout,parent,false);
-        return new myViewHolder(v);
+        return new MyViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull myViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.background_img.setImageResource(mData.get(position).getBackground());
         holder.manga_title.setText(mData.get(position).getMangaName());
         holder.mangaka_name.setText(mData.get(position).getMangaka());
@@ -45,12 +45,12 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.myViewHold
         return mData.size();
     }
 
-    public class myViewHolder extends RecyclerView.ViewHolder{
+    public class MyViewHolder extends RecyclerView.ViewHolder{
 
         ImageView background_img;
         TextView manga_title, mangaka_name;
 
-        public myViewHolder(View itemView) {
+        public MyViewHolder(View itemView) {
             super(itemView);
             background_img = itemView.findViewById(R.id.manga_background);
             manga_title = itemView.findViewById(R.id.manga_title);
