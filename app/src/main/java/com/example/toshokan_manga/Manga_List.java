@@ -20,6 +20,7 @@ public class Manga_List extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.manga__list_activity);
         if (savedInstanceState == null) {
@@ -28,20 +29,8 @@ public class Manga_List extends AppCompatActivity {
                     .commitNow();
         }
 
-        //makes the manga layout transparent
-        Window w =getWindow();
-        w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
-        //setup the recycleview with the adapter
-        RecyclerView recyclerView= findViewById(R.id.rv_list);
-        List<Manga> mlist = new ArrayList<>();
-        mlist.add(new Manga(R.drawable.onepiece,"One Piece","Eichiro Oda"));
-        mlist.add(new Manga(R.drawable.bluelock,"Blue Lock","Muneyuki Kaneshiro"));
-        mlist.add(new Manga(R.drawable.boruto,"Boruto","Masashi Kishimoto"));
-        mlist.add(new Manga(R.drawable.kingdom,"Kingdom","Yasuhisa Hara"));
 
-        CustomAdapter adapter = new CustomAdapter(this,mlist);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
     }
 }
