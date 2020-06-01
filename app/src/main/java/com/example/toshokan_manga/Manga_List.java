@@ -37,7 +37,7 @@ public class Manga_List extends AppCompatActivity {
         List<Manga> mlist = new ArrayList<>();
         mlist.add(new Manga(R.drawable.onepiece,"One Piece","Eichiro Oda"));
         mlist.add(new Manga(R.drawable.bluelock,"Blue Lock","Muneyuki Kaneshiro"));
-        mlist.add(new Manga(R.drawable.boruto,"Boruto","Masashi Kishimoto"));
+
         mlist.add(new Manga(R.drawable.kingdom,"Kingdom","Yasuhisa Hara"));
 
         CustomAdapter adapter = new CustomAdapter(this,mlist);
