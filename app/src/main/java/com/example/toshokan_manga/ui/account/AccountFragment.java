@@ -117,11 +117,6 @@ public class AccountFragment extends Fragment {
             }
         });
 
-
-
-
-
-
         return view;
 
     }
@@ -172,11 +167,6 @@ public class AccountFragment extends Fragment {
         startActivity(new Intent(getContext(), HomeActivity.class));
         getActivity().finish();
     }
-
-
-
-
-
 
 
 
