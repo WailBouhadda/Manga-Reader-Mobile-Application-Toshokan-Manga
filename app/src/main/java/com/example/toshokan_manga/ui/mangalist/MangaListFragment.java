@@ -24,9 +24,12 @@ import java.util.List;
 
 
 public class MangaListFragment extends Fragment{
+
     View v;
+    
     private RecyclerView recyclerView;
     private List<Manga> mangas;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

@@ -1,9 +1,16 @@
 package com.example.toshokan_manga.Model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Manga {
     int background;
     public String mangaName;
     public  String  mangaka;
+    public int ID;
+    public String alias;
+    public  String status;
+
 
     public Manga() {
     }
