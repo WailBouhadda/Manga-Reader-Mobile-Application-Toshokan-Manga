@@ -1,11 +1,17 @@
 package com.example.toshokan_manga.Model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Manga {
-    int background;
+
+    @SerializedName("im")
+    public String background;
+    @SerializedName("t")
     public String mangaName;
+
     public  String  mangaka;
     public int ID;
     public String alias;
@@ -15,13 +21,13 @@ public class Manga {
     public Manga() {
     }
 
-    public Manga(int background, String mangaName, String mangaka) {
+    public Manga(String background, String mangaName, String mangaka) {
         this.background = background;
         this.mangaName = mangaName;
         this.mangaka = mangaka;
     }
 
-    public int getBackground() {
+    public String getBackground() {
         return background;
     }
 
@@ -33,7 +39,7 @@ public class Manga {
         return mangaka;
     }
 
-    public void setBackground(int background) {
+    public void setBackground(String background) {
         this.background = background;
     }
 
