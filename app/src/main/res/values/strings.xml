@@ -22,4 +22,7 @@
     <string name="home_second">Home Second</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="title_activity_home">HomeActivity</string>
+    <string name="title_activity_mangamain">MangamainActivity</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
 </resources>

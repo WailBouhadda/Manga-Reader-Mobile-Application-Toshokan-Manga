@@ -11,11 +11,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Favorite"></activity>
+        <activity
+            android:name=".ui.fragments.MangamainActivity"
+            android:label="@string/title_activity_mangamain"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".Favorite" />
         <activity android:name=".Manga_List" />
         <activity android:name=".Latest_Views" />
         <activity android:name=".Account" />
 
+        <activity android:name=".MangaInfoActivity" />
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
