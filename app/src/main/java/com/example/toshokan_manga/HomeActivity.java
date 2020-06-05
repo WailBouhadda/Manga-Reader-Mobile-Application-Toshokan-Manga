@@ -184,8 +184,9 @@ public class HomeActivity extends AppCompatActivity {
       try {
           fragment =  getSupportFragmentManager().findFragmentById(R.id.account);
           fragment.onActivityResult(requestCode, resultCode, data);
+          mCallbackManager.onActivityResult(requestCode, resultCode, data);
     }catch (NullPointerException ignored){}
-        mCallbackManager.onActivityResult(requestCode, resultCode, data);
+
     }
 
     @Override

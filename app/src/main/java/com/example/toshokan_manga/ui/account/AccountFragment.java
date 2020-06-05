@@ -159,7 +159,6 @@ public class AccountFragment extends Fragment {
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        getChildFragmentManager();
         super.onActivityResult(requestCode, resultCode, data);
         Fragment fragment =  getActivity().getSupportFragmentManager().findFragmentById(R.id.account);
         fragment.onActivityResult(requestCode, resultCode, data);
