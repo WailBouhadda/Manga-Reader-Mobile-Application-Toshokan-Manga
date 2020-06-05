@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     String username;
     String email;
     String password;
-    GoogleSignInClient mGoogleSignInClient;
+    private GoogleSignInClient mGoogleSignInClient;
     private FirebaseAuth mAuth;
     private CallbackManager mCallbackManager;
     private final static String TAG = "FACELOG";

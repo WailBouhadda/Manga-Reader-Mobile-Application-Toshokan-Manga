@@ -177,18 +177,6 @@ public class HomeActivity extends AppCompatActivity {
         return true;
     }
 
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        Fragment fragment = null;
-      try {
-          fragment =  getSupportFragmentManager().findFragmentById(R.id.account);
-          fragment.onActivityResult(requestCode, resultCode, data);
-          mCallbackManager.onActivityResult(requestCode, resultCode, data);
-    }catch (NullPointerException ignored){}
-
-    }
-
     @Override
     public boolean onSupportNavigateUp() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);

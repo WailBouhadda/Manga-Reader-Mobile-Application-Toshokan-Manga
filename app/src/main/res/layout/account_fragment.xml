@@ -121,30 +121,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-
-            <com.facebook.login.widget.LoginButton
-                android:id="@+id/facebookbttn"
-                android:layout_width="203dp"
-                android:layout_height="35dp"
-                android:layout_centerVertical="true"
+            <Button
+                android:id="@+id/Login_bttn"
+                android:layout_width="191dp"
+                android:layout_height="49dp"
+                android:text="Login"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.54"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.578" />
-
-            <com.google.android.gms.common.SignInButton
-
-                android:id="@+id/googlebttn"
-                android:layout_width="225dp"
-                android:layout_height="43dp"
-                android:layout_centerVertical="true"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.497"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.454" />
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </RelativeLayout>
 
