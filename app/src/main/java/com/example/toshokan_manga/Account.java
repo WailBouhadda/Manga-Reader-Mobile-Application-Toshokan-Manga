@@ -3,6 +3,7 @@ package com.example.toshokan_manga;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.toshokan_manga.ui.account.AccountFragment;
+import com.facebook.CallbackManager;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -21,17 +23,19 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+
 public class Account extends AppCompatActivity {
 
-
+    private CallbackManager mCallbackManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-
+        mCallbackManager = CallbackManager.Factory.create();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.account_activity);
+
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.container, AccountFragment.newInstance())
@@ -44,6 +48,7 @@ public class Account extends AppCompatActivity {
 
 
     }
+
 
 
 

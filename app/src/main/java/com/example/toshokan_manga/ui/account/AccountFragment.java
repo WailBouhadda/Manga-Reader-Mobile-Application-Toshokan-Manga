@@ -1,26 +1,25 @@
 package com.example.toshokan_manga.ui.account;
 
-import androidx.lifecycle.ViewModelProviders;
-
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.toshokan_manga.Account;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
+
 import com.example.toshokan_manga.HomeActivity;
 import com.example.toshokan_manga.R;
+import com.example.toshokan_manga.User;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -41,6 +40,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Objects;
 import java.util.concurrent.Executor;
 
 public class AccountFragment extends Fragment {
@@ -57,6 +57,9 @@ public class AccountFragment extends Fragment {
     Button logoutbttn;
     private Button facebookbttn;
     private final static String TAG = "FACELOG";
+    String username;
+    String email;
+    ProgressBar progressBar;
 
     public static AccountFragment newInstance() {
         return new AccountFragment();
@@ -76,6 +79,7 @@ public class AccountFragment extends Fragment {
         logoutbttn = view.findViewById(R.id.logoutbttn);
         usernametxt = (TextView) view.findViewById(R.id.usernametxt);
         emailtxt = (TextView) view.findViewById(R.id.emailtxt);
+        progressBar = view.findViewById(R.id.progressBar);
 
 
 
@@ -120,11 +124,46 @@ public class AccountFragment extends Fragment {
         return view;
 
     }
+    private void addUser()
+    {
+
+        progressBar.setVisibility(View.VISIBLE);
+        username = Objects.requireNonNull(mAuth.getCurrentUser()).getDisplayName();
+        email = mAuth.getCurrentUser().getEmail();
+        User user = new User(
+                username,
+                email
+        );
+
+
+        FirebaseDatabase.getInstance().getReference("Users")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+
+
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+
+                progressBar.setVisibility(View.GONE);
+
+
+                if (task.isSuccessful()) {
+
+                    progressBar.setVisibility(View.GONE);
+                    Toast.makeText(getActivity().getApplicationContext(),"Registration Successfull",Toast.LENGTH_SHORT).show();
+
+                }
+            }
+        });
+
+    }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        getChildFragmentManager();
         super.onActivityResult(requestCode, resultCode, data);
+        Fragment fragment =  getActivity().getSupportFragmentManager().findFragmentById(R.id.account);
+        fragment.onActivityResult(requestCode, resultCode, data);
 
-        // Pass the activity result back to the Facebook SDK
         mCallbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
@@ -140,6 +179,7 @@ public class AccountFragment extends Fragment {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
+                            addUser();
                             updateUI();
                         } else {
                             // If sign in fails, display a message to the user.

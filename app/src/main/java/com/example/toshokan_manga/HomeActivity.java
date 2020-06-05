@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.Menu;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.support.v4.app.*;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -16,6 +17,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.toshokan_manga.ui.account.AccountFragment;
+import com.facebook.CallbackManager;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -29,6 +32,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
@@ -48,6 +53,7 @@ public class HomeActivity extends AppCompatActivity {
     DatabaseReference reference;
     FirebaseUser user;
     private NavigationView navigationView;
+    private CallbackManager mCallbackManager;
 
 
 
@@ -56,6 +62,7 @@ public class HomeActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
+        mCallbackManager = CallbackManager.Factory.create();
 
 
         super.onCreate(savedInstanceState);
@@ -122,6 +129,9 @@ public class HomeActivity extends AppCompatActivity {
 
         );
         requestQueue.add(objectRequest);
+
+
+
     }
     private void loadUserInformation() {
 
@@ -160,7 +170,6 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -168,9 +177,16 @@ public class HomeActivity extends AppCompatActivity {
         return true;
     }
 
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
-
-
+        Fragment fragment = null;
+      try {
+          fragment =  getSupportFragmentManager().findFragmentById(R.id.account);
+          fragment.onActivityResult(requestCode, resultCode, data);
+    }catch (NullPointerException ignored){}
+        mCallbackManager.onActivityResult(requestCode, resultCode, data);
+    }
 
     @Override
     public boolean onSupportNavigateUp() {
