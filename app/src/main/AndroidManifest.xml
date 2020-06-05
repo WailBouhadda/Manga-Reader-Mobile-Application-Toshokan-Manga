@@ -20,6 +20,7 @@
         <activity android:name=".Latest_Views" />
         <activity android:name=".Account" />
 
+        <activity android:name=".MangaInfoActivity" />
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />

@@ -69,7 +69,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             background_img = itemView.findViewById(R.id.manga_background);
             manga_title = itemView.findViewById(R.id.manga_title);
             mangaka_name = itemView.findViewById(R.id.mangaka_name);
-            
+
             itemView.setOnClickListener(new View.OnClickListener() {
 
                 @Override
