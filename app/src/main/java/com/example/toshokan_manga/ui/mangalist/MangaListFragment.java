@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +26,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.toshokan_manga.MainActivity;
 import com.example.toshokan_manga.MangaInfoActivity;
+import com.example.toshokan_manga.MangaInfoTabFragment;
 import com.example.toshokan_manga.Model.CustomAdapter;
 import com.example.toshokan_manga.Model.Manga;
 import com.example.toshokan_manga.R;
@@ -49,6 +51,7 @@ public class MangaListFragment extends Fragment implements CustomAdapter.OnManga
     public RequestQueue requestQueue;
     boolean scrolling = false;
     private List<Manga> mangas;
+    SwipeRefreshLayout swipe1;
 
 
 
@@ -56,6 +59,7 @@ public class MangaListFragment extends Fragment implements CustomAdapter.OnManga
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mangas = new ArrayList<>();
+
 
     }
 
@@ -74,10 +78,18 @@ public class MangaListFragment extends Fragment implements CustomAdapter.OnManga
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        requestQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
+        requestQueue = Volley.newRequestQueue(getActivity());
+
         parseJson();
 
+
         return v;
+
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
     }
 
@@ -90,7 +102,7 @@ public class MangaListFragment extends Fragment implements CustomAdapter.OnManga
 
     }
     private void parseJson(){
-        final String JSON_URL = "https://www.mangaeden.com/api/list/0/";
+        final String JSON_URL = "https://www.mangaeden.com/api/list/0/?p=1";
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, JSON_URL, null,
                 new Response.Listener<JSONObject>() {
@@ -129,7 +141,7 @@ public class MangaListFragment extends Fragment implements CustomAdapter.OnManga
     @Override
     public void onMangaClick(int position) {
 
-        Intent detailIntent = new Intent(getActivity().getApplicationContext(), MangaInfoActivity.class);
+        Intent detailIntent = new Intent(getContext(), MangaInfoTabFragment.class);
         Manga clickedManga = mangas.get(position);
         detailIntent.putExtra(EXTRA_URL,clickedManga.getMangaName());
         detailIntent.putExtra(EXTRA_IMG,clickedManga.getBackground());
