@@ -15,7 +15,6 @@ import android.widget.Adapter;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.toshokan_manga.Model.Manga;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;

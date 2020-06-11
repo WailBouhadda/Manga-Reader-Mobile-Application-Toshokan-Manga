@@ -9,8 +9,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Adapter;
 
-import com.example.toshokan_manga.Model.CustomAdapter;
-import com.example.toshokan_manga.Model.Manga;
+
 import com.example.toshokan_manga.ui.mangalist.MangaListFragment;
 
 import java.util.ArrayList;
