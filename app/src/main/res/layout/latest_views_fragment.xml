@@ -7,14 +7,16 @@
     android:layout_height="match_parent"
     tools:context=".ui.latestviews.LatestViewsFragment">
 
-    <TextView
-        android:id="@+id/message"
+    <ImageView
+        android:src="@drawable/background_img"
+        android:id="@+id/imageView_i"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="LatestViewsFragment"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

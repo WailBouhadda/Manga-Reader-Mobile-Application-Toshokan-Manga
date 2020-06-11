@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -37,7 +38,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
         holder.textViewtitle.setText(mangaC.getT());
         holder.textViewmangaka.setText(mangaC.getA());
-        Picasso.get().load(mangaC.getIm()).into(holder.imageViewbg);
+        Glide.with(context)
+                .load(mangaC.getIm())
+                .placeholder(R.drawable.background_img)
+                .into(holder.imageViewbg);
     }
 
     @Override

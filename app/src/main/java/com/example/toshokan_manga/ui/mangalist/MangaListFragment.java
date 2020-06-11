@@ -19,6 +19,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -41,6 +43,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -63,6 +66,8 @@ public class MangaListFragment extends Fragment {
     boolean scrolling = false;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
+    private ProgressBar progressBar;
+
 
     private List<MangaC> mangaCS;
 
@@ -82,6 +87,7 @@ public class MangaListFragment extends Fragment {
         super.onStart();
 
 
+
     }
 
     private MangaListViewModel mViewModel;
@@ -99,12 +105,15 @@ public class MangaListFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         reference = FirebaseDatabase.getInstance().getReference().child("Manga_list");
+        progressBar = v.findViewById(R.id.p_b);
         mangaCS = new ArrayList<MangaC>();
 
-        reference.addValueEventListener(new ValueEventListener() {
+        progressBar.setVisibility(View.VISIBLE);
+           reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 mangaCS.clear();
+               progressBar.setVisibility(View.GONE);
 
                 for (DataSnapshot dataSnapshot1:dataSnapshot.getChildren()){
                     MangaC manga = dataSnapshot1.getValue(MangaC.class);
@@ -121,22 +130,6 @@ public class MangaListFragment extends Fragment {
                 Toast.makeText(getActivity(), databaseError.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
-        /*  for (int i=0;i <=10;i++){
-                MangaC mangaC = new MangaC(
-                        "wailwailwail" + (i+1),
-                        "one piece",
-                        "wail"
-                );
-            mangaCS.add(mangaC);
-
-
-
-        adapter =  new MyAdapter(mangaCS,getActivity());
-        recyclerView.setAdapter(adapter);
-    }*/
-
-
-
 
         return v;
 
