@@ -6,12 +6,14 @@ public class MangaC {
     private String t;
     private String a;
     private Long last_chapter_date;
+    private Long k;
 
-    public MangaC(String im, String t, String a, Long last_chapter_date) {
+    public MangaC(String im, String t, String a, Long last_chapter_date, Long k) {
         this.im = im;
         this.t = t;
         this.a = a;
         this.last_chapter_date = last_chapter_date;
+        this.k =k;
     }
 
     public Long getLast_chapter_date() {
@@ -24,6 +26,14 @@ public class MangaC {
 
     public MangaC() {
 
+    }
+
+    public Long getK() {
+        return k;
+    }
+
+    public void setK(Long k) {
+        this.k = k;
     }
 
     public String getIm() {
