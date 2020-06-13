@@ -2,6 +2,7 @@ package com.example.toshokan_manga;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -20,13 +21,19 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class MangaDetails extends AppCompatActivity implements View.OnClickListener {
+public class MangaDetails extends AppCompatActivity {
     private TextView textViewtitle;
     private TextView textViewmangaka;
     private TextView textViewdate;
     private  TextView descrep;
+    private TextView titlet;
     private ImageView imageView;
-
+    private Button backbttn;
+    private Button chaptersb;
+    private Button detaitlsb;
+    private Button favoriteb;
+    private ConstraintLayout detailslayout;
+    private ConstraintLayout chapterslayout;
     DatabaseReference ref ;
     DatabaseReference reference;
     ListView listView;
@@ -41,12 +48,48 @@ public class MangaDetails extends AppCompatActivity implements View.OnClickListe
         textViewtitle = findViewById(R.id.title_manga);
         textViewmangaka = findViewById(R.id.mangaka_manga);
         textViewdate = findViewById(R.id.release_dateTexview);
+        titlet = findViewById(R.id.titletxt);
         imageView =findViewById(R.id.manga_image);
         descrep = findViewById(R.id.desc_text);
         listView = findViewById(R.id.listview1);
+        backbttn = findViewById(R.id.backto_bttn);
+        chaptersb = findViewById(R.id.chapters_bttn);
+        detaitlsb = findViewById(R.id.details_bttn);
+        favoriteb = findViewById(R.id.fav_bttn);
+        detailslayout = findViewById(R.id.details_layout);
+        chapterslayout = findViewById(R.id.chapters_layout);
+
         ref = FirebaseDatabase.getInstance().getReference().child("Manga");
         reference = ref.child("categories");
         String po = getIntent().getStringExtra("pi");
+
+
+backbttn.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        finish();
+    }
+});
+
+chaptersb.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        detailslayout.setVisibility(View.GONE);
+        chapterslayout.setVisibility(View.VISIBLE);
+
+    }
+});
+
+detaitlsb.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        detailslayout.setVisibility(View.VISIBLE);
+        chapterslayout.setVisibility(View.GONE);
+    }
+});
+
+
+
 
 
 
@@ -62,10 +105,12 @@ public class MangaDetails extends AppCompatActivity implements View.OnClickListe
 
 
 
+
                 textViewtitle.setText(""+object);
                 textViewmangaka.setText(""+name);
                 textViewdate.setText(""+date);
                 descrep.setText(""+descr);
+                titlet.setText(""+object);
                 Glide.with(getApplicationContext())
                         .load(img)
                         .placeholder(R.drawable.background_img)
@@ -85,19 +130,5 @@ public class MangaDetails extends AppCompatActivity implements View.OnClickListe
 
 
 
-    }
-
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.backto_bttn:
-                this.finish();
-                break;
-            case  R.id.details_bttn:
-                break;
-            case  R.id.chapters_bttn:
-                break;
-        }
     }
 }

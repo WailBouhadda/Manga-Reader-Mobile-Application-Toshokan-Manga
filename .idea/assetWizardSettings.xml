@@ -146,8 +146,8 @@
                           <map>
                             <entry key="assetSourceType" value="FILE" />
                             <entry key="color" value="00ff3f" />
-                            <entry key="outputName" value="ic_comic_book" />
-                            <entry key="sourceFile" value="C:\Users\pc\Desktop\comic-book.svg" />
+                            <entry key="outputName" value="ic_comic" />
+                            <entry key="sourceFile" value="C:\Users\pc\Desktop\comic.svg" />
                           </map>
                         </option>
                       </PersistentState>

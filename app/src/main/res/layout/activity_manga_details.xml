@@ -7,60 +7,123 @@
     android:layout_height="match_parent"
     tools:context=".MangaDetails">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar2"
-        android:layout_width="409dp"
-        android:layout_height="57dp"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintBottom_toTopOf="@+id/toolbar3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar3"
-        android:layout_width="413dp"
-        android:layout_height="57dp"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.963" />
-
-    <Button
-        android:id="@+id/chapters_bttn"
-        android:layout_width="204dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="207dp"
-        android:text="Chapters"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbar3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/toolbar3"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textAllCaps="false"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <Button
-        android:id="@+id/details_bttn"
-        android:layout_width="204dp"
-        android:layout_height="52dp"
-        android:layout_marginEnd="207dp"
-        android:layout_marginBottom="2dp"
-        android:text="Details"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
-        app:layout_constraintEnd_toEndOf="@+id/chapters_bttn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textAllCaps="false"
-        app:layout_constraintVertical_bias="1.0" />
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
+        android:layout_width="410dp"
+        android:layout_height="108dp"
+        android:layout_marginBottom="620dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar2"
+            android:layout_width="412dp"
+            android:layout_height="63dp"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:layout_constraintBottom_toTopOf="@+id/toolbar3"
+            app:layout_constraintEnd_toEndOf="@+id/fav_bttn"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/backto_bttn"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.7" />
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar3"
+            android:layout_width="406dp"
+            android:layout_height="55dp"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/chapters_bttn"
+            app:layout_constraintStart_toStartOf="@+id/details_bttn"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <Button
+            android:id="@+id/chapters_bttn"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="204dp"
+            android:layout_height="52dp"
+            android:layout_marginTop="56dp"
+            android:drawableRight="@drawable/ic_files"
+            android:text="Chapters"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/toolbar2" />
+
+        <Button
+            android:id="@+id/backto_bttn"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="67dp"
+            android:layout_height="57dp"
+            android:background="#FFFFFF"
+            app:backgroundTint="#00FFFFFF"
+            app:icon="@drawable/ic_keyboard_backspace_black_24dp"
+            app:iconSize="30dp"
+            app:layout_constraintBottom_toTopOf="@+id/toolbar3"
+            app:layout_constraintEnd_toStartOf="@+id/titletxt"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/fav_bttn"
+            style="?android:attr/borderlessButtonStyle"
+
+            android:layout_width="53dp"
+            android:layout_height="55dp"
+            app:icon="@drawable/ic_favorite_border_black_24dp"
+            app:layout_constraintBottom_toTopOf="@+id/toolbar3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.994"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/titletxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/amaranth"
+            android:text="TextView"
+            android:textColor="#FFFFFF"
+            android:textSize="25dp"
+            app:layout_constraintBottom_toTopOf="@+id/details_bttn"
+            app:layout_constraintEnd_toStartOf="@+id/fav_bttn"
+            app:layout_constraintHorizontal_bias="0.293"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.333" />
+
+        <Button
+            android:id="@+id/details_bttn"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="204dp"
+            android:layout_height="52dp"
+            android:layout_marginTop="3dp"
+            android:drawableLeft="@drawable/ic_comic"
+            android:text="Details"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/toolbar3"
+            app:layout_constraintVertical_bias="0.0" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/details_layout"
         android:layout_width="413dp"
         android:layout_height="621dp"
         android:padding="10dp"
@@ -72,17 +135,17 @@
         app:layout_constraintVertical_bias="1.0"
         tools:ignore="MissingConstraints">
 
+
         <ImageView
             android:id="@+id/manga_image"
-            android:layout_width="206dp"
-            android:layout_height="320dp"
+            android:layout_width="163dp"
+            android:layout_height="255dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.08"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
-
+            app:layout_constraintVertical_bias="0.013" />
 
         <TextView
             android:id="@+id/title_manga"
@@ -148,24 +211,26 @@
 
         <ListView
             android:id="@+id/listview1"
-            android:layout_width="182dp"
-            android:layout_height="151dp"
+            android:layout_width="204dp"
+            android:layout_height="99dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.363" />
+            app:layout_constraintVertical_bias="0.327" />
 
         <ScrollView
             android:id="@+id/scrollView2"
-            android:layout_width="405dp"
-            android:layout_height="232dp"
+            android:layout_width="412dp"
+            android:layout_height="296dp"
             android:layout_marginTop="72dp"
+            android:padding="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/manga_image">
+            app:layout_constraintTop_toBottomOf="@+id/manga_image"
+            app:layout_constraintVertical_bias="0.733">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -178,7 +243,6 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:layout_marginTop="40dp"
-                    android:padding="10dp"
                     android:text="TextView" />
             </LinearLayout>
         </ScrollView>
@@ -195,26 +259,24 @@
             android:textSize="20dp"
             app:layout_constraintBottom_toTopOf="@+id/scrollView2"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.107"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/manga_image"
-            app:layout_constraintVertical_bias="0.64" />
+            app:layout_constraintVertical_bias="0.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <Button
-        android:id="@+id/backto_bttn"
-        android:layout_width="88dp"
-        android:layout_height="55dp"
-        android:background="#FFFFFF"
-        app:backgroundTint="#00FFFFFF"
-        app:icon="@drawable/ic_keyboard_backspace_black_24dp"
-        app:iconSize="30dp"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbar2"
-        app:layout_constraintEnd_toEndOf="@+id/toolbar2"
-        app:layout_constraintHorizontal_bias="0.0"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/chapters_layout"
+        android:layout_width="413dp"
+        android:layout_height="620dp"
+        android:layout_marginTop="110dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.75" />
+        app:layout_constraintTop_toTopOf="parent">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
