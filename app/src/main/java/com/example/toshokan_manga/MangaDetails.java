@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -35,7 +36,7 @@ public class MangaDetails extends AppCompatActivity {
     private ConstraintLayout detailslayout;
     private ConstraintLayout chapterslayout;
     DatabaseReference ref ;
-    DatabaseReference reference;
+    DatabaseReference reference1;
     ListView listView;
 
     @SuppressLint("WrongViewCast")
@@ -60,8 +61,8 @@ public class MangaDetails extends AppCompatActivity {
         chapterslayout = findViewById(R.id.chapters_layout);
 
         ref = FirebaseDatabase.getInstance().getReference().child("Manga");
-        reference = ref.child("categories");
-        String po = getIntent().getStringExtra("pi");
+        reference1 = ref.child("categories");
+        final String po = getIntent().getStringExtra("pi");
 
 
 backbttn.setOnClickListener(new View.OnClickListener() {
@@ -88,11 +89,12 @@ detaitlsb.setOnClickListener(new View.OnClickListener() {
     }
 });
 
+favoriteb.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
 
-
-
-
-
+    }
+});
 
         ref.child(po).addValueEventListener(new ValueEventListener() {
             @Override

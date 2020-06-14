@@ -5,7 +5,11 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,16 +18,21 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.squareup.picasso.Picasso;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
+public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>  {
    private List<MangaC> mangaCS;
    private Context context;
    DatabaseReference reference;
+   private MangaC mangaC;
+
 
     public MyAdapter(List<MangaC> mangaCS, Context context) {
         this.mangaCS = mangaCS;
@@ -43,7 +52,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         final MangaC mangaC = mangaCS.get(position);
         reference = FirebaseDatabase.getInstance().getReference().child("Manga_list");
 
-
         holder.textViewtitle.setText(mangaC.getT());
         holder.textViewmangaka.setText(mangaC.getA());
         Glide.with(context)
@@ -59,8 +67,76 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
                 intent.putExtra("pi" ,p);
                 Toast.makeText(context, "This is : " + p, Toast.LENGTH_LONG).show();
                 v.getContext().startActivity(intent);
+
+                DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference("Users")
+                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                        .child("latest view");
+                reference1.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()){
+                         Long  max = dataSnapshot.getChildrenCount() + 1;
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+                MangaC posit = mangaCS.get(position);
+                String a = posit.getK().toString();
+                reference1.child(a).setValue(posit);
+
             }
         });
+
+
+        ///Add Favourite
+
+       holder.favo.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+           @Override
+           public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+               if (FirebaseAuth.getInstance().getCurrentUser() == null){
+                   Toast.makeText(context, "Please login first ...", Toast.LENGTH_LONG).show();
+                   buttonView.setChecked(false);
+               }
+
+
+               DatabaseReference myref = FirebaseDatabase.getInstance().getReference("Users")
+                       .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                       .child("favourites");
+               myref.addValueEventListener(new ValueEventListener() {
+                   @Override
+                   public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                       if (dataSnapshot.exists()){
+                          Long max = dataSnapshot.getChildrenCount() + 1;
+                       }
+                   }
+
+                   @Override
+                   public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                   }
+               });
+
+               if (isChecked){
+
+                   MangaC posit = mangaCS.get(position);
+                   String a = posit.getK().toString();
+                   myref.child(a).setValue(posit);
+
+               }else{
+                   MangaC posi = mangaCS.get(position);
+                   String r = posi.getK().toString();
+                   myref.child(r).setValue(null);
+               }
+
+
+
+           }
+       });
     }
 
     @Override
@@ -73,6 +149,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         public TextView textViewmangaka;
         public ImageView imageViewbg;
         public ConstraintLayout constraintLayout;
+        public CheckBox favo;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -80,7 +158,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             textViewtitle = (TextView) itemView.findViewById(R.id.manga_title);
             textViewmangaka = (TextView) itemView.findViewById(R.id.mangaka_name);
             imageViewbg = (ImageView) itemView.findViewById(R.id.manga_background);
+            favo = (CheckBox) itemView.findViewById(R.id.fav_chek);
             constraintLayout = itemView.findViewById(R.id.constarinl);
+
+
         }
     }
+
+
 }

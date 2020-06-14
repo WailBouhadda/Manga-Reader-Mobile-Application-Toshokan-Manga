@@ -28,23 +28,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
-    <Button
-        android:id="@+id/btn_fav"
-        android:layout_width="176dp"
-        android:layout_height="65dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="17dp"
-        android:text="Favourite"
-        android:textSize="15dp"
-        android:textStyle="bold"
-        app:backgroundTint="#8EF16D"
-        app:cornerRadius="30dp"
-        app:icon="@drawable/ic_favorite_border_black_24dp"
-        app:iconSize="25dp"
-        app:iconTint="#FBFBFB"
-        app:layout_constraintBottom_toBottomOf="@+id/manga_background"
-        app:layout_constraintEnd_toEndOf="@+id/imageView5"
-        tools:ignore="MissingConstraints" />
 
     <ImageView
 
@@ -58,6 +41,29 @@
         app:layout_constraintTop_toBottomOf="@+id/manga_background"
         app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/black_gradient" />
+
+    <CheckBox
+        android:id="@+id/fav_chek"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/bb"
+        android:button="@drawable/chekbox_selec"
+        android:padding="5dp"
+        android:text="Favourite"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:backgroundTint="#8EF16D"
+        app:buttonTint="#FFFFFF"
+        app:icon="@drawable/ic_favorite_border_black_24dp"
+        app:iconSize="25dp"
+        app:iconTint="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/manga_background"
+        app:layout_constraintEnd_toEndOf="@+id/imageView5"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/manga_title"
