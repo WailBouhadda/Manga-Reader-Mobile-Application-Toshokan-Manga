@@ -67,7 +67,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>  {
                 Intent intent = new Intent(v.getContext().getApplicationContext(),MangaDetails.class);
                 String p = mangaC.getK().toString();
                 intent.putExtra("pi" ,p);
-                Toast.makeText(context, "This is : " + p, Toast.LENGTH_LONG).show();
                 v.getContext().startActivity(intent);
 
                 DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference("Users")

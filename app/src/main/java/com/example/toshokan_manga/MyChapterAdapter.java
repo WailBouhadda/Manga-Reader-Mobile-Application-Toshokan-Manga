@@ -1,12 +1,15 @@
 package com.example.toshokan_manga;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.DatabaseReference;
@@ -38,10 +41,22 @@ public class MyChapterAdapter extends RecyclerView.Adapter<MyChapterAdapter.View
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        reference = FirebaseDatabase.getInstance().getReference().child("Manga_list").child("chapters");
+        reference = FirebaseDatabase.getInstance().getReference().child("Manga").child("chapters");
         final chapters chapterslist = chaptersListA.get(position);
 
         holder.numtextview.setText(chapterslist.getNum());
+
+
+        holder.chp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext().getApplicationContext(),WebView.class);
+                String U = chapterslist.getUrl().toString();
+                intent.putExtra("U" ,U);
+                v.getContext().startActivity(intent);
+
+            }
+        });
 
 
 
@@ -55,11 +70,13 @@ public class MyChapterAdapter extends RecyclerView.Adapter<MyChapterAdapter.View
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         public TextView numtextview;
+        public ConstraintLayout chp;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             numtextview = itemView.findViewById(R.id.num);
+            chp = itemView.findViewById(R.id.chp_layout);
         }
     }
 }

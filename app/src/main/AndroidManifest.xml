@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".WebView"></activity>
         <activity android:name=".MangaDetails" />
         <activity android:name=".Favorite" />
         <activity android:name=".Manga_List" />
