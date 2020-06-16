@@ -9,24 +9,23 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
 public class MyChapterAdapter extends RecyclerView.Adapter<MyChapterAdapter.ViewHolder> {
 
-
+    private List<chapters> chaptersListA;
+    private Context context;
+    DatabaseReference reference;
+    chapters chapterslist;
     public MyChapterAdapter(List<chapters> chaptersListA, Context context) {
         this.chaptersListA = chaptersListA;
         this.context = context;
     }
 
-    private List<chapters> chaptersListA;
-   private Context context;
-
-    public MyChapterAdapter(List<chapters> chaptersList, ValueEventListener valueEventListener) {
-
-    }
 
     @NonNull
     @Override
@@ -39,7 +38,8 @@ public class MyChapterAdapter extends RecyclerView.Adapter<MyChapterAdapter.View
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        chapters chapterslist = chaptersListA.get(position);
+        reference = FirebaseDatabase.getInstance().getReference().child("Manga_list").child("chapters");
+        final chapters chapterslist = chaptersListA.get(position);
 
         holder.numtextview.setText(chapterslist.getNum());
 

@@ -80,7 +80,7 @@ public class MangaDetails extends AppCompatActivity {
         chapterslayout = findViewById(R.id.chapters_layout);
         chapterview.setHasFixedSize(true);
         chapterview.setLayoutManager(new LinearLayoutManager(this));
-        chaptersList = new ArrayList<>();
+        chaptersList = new ArrayList<chapters>();
 
         ref = FirebaseDatabase.getInstance().getReference().child("Manga");
         reference1 = ref.child("categories");
@@ -146,7 +146,7 @@ detaitlsb.setOnClickListener(new View.OnClickListener() {
 
 
        reference2 = ref.child("chapters");
-        reference2.addValueEventListener(new ValueEventListener() {
+        ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 chaptersList.clear();
@@ -156,7 +156,7 @@ detaitlsb.setOnClickListener(new View.OnClickListener() {
                     chaptersList.add(chp);
 
                 }
-                adapter = new MyChapterAdapter(chaptersList,this);
+                adapter = new MyChapterAdapter(chaptersList, getApplication());
                 chapterview.setAdapter(adapter);
 
 
