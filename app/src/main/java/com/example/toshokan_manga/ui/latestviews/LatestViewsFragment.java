@@ -1,5 +1,6 @@
 package com.example.toshokan_manga.ui.latestviews;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
@@ -25,6 +26,7 @@ import com.example.toshokan_manga.MangaC;
 import com.example.toshokan_manga.MyAdapter;
 import com.example.toshokan_manga.R;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -48,6 +50,10 @@ public class LatestViewsFragment extends Fragment {
     private RecyclerView recyclerView1;
     private RecyclerView.Adapter adapter1;
     private ProgressBar progressBar1;
+    FirebaseUser user;
+    private FirebaseAuth mAuth;
+    private ConstraintLayout listcon;
+    private  ConstraintLayout txtcon;
 
 
     private List<MangaC> mangacs;
@@ -63,16 +69,24 @@ public class LatestViewsFragment extends Fragment {
 
 
 
+        mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
         recyclerView1 = v.findViewById(R.id.lv_recycler);
         recyclerView1.setHasFixedSize(true);
         recyclerView1.setLayoutManager(new LinearLayoutManager(getActivity()));
-        reference1 = FirebaseDatabase.getInstance().getReference("Users")
-                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .child("favourites");
+        listcon = v.findViewById(R.id.const_recy);
+        txtcon = v.findViewById(R.id.const_text);
         progressBar1 = v.findViewById(R.id.lv_progress);
         mangacs = new ArrayList<MangaC>();
 
         progressBar1.setVisibility(View.VISIBLE);
+
+        if (user !=null){
+            listcon.setVisibility(View.VISIBLE);
+            txtcon.setVisibility(View.GONE);
+        reference1 = FirebaseDatabase.getInstance().getReference("Users")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .child("latest view");
         reference1.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -94,6 +108,11 @@ public class LatestViewsFragment extends Fragment {
                 Toast.makeText(getActivity(), databaseError.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
+        }else {
+
+            listcon.setVisibility(View.GONE);
+            txtcon.setVisibility(View.VISIBLE);
+        }
 
         return v;
     }

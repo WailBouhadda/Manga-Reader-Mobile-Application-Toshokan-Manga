@@ -68,7 +68,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>  {
                 String p = mangaC.getK().toString();
                 intent.putExtra("pi" ,p);
                 v.getContext().startActivity(intent);
-
+                if (FirebaseAuth.getInstance().getCurrentUser() == null) {
                 DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference("Users")
                         .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                         .child("latest view");
@@ -90,6 +90,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>  {
                 String a = posit.getK().toString();
                 reference1.child(a).setValue(posit);
 
+                }
             }
         });
 
@@ -99,10 +100,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>  {
        holder.favo.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
            @Override
            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-               if (FirebaseAuth.getInstance().getCurrentUser() == null){
+               if (FirebaseAuth.getInstance().getCurrentUser() == null) {
                    Toast.makeText(context, "Please login first ...", Toast.LENGTH_LONG).show();
                    buttonView.setChecked(false);
-               }
+               }else {
 
 
                DatabaseReference myref = FirebaseDatabase.getInstance().getReference("Users")
@@ -111,8 +112,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>  {
                myref.addValueEventListener(new ValueEventListener() {
                    @Override
                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                       if (dataSnapshot.exists()){
-                          Long max = dataSnapshot.getChildrenCount() + 1;
+                       if (dataSnapshot.exists()) {
+                           Long max = dataSnapshot.getChildrenCount() + 1;
                        }
                    }
 
@@ -122,19 +123,19 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>  {
                    }
                });
 
-               if (isChecked){
+               if (isChecked) {
 
                    MangaC posit = mangaCS.get(position);
                    String a = posit.getK().toString();
                    myref.child(a).setValue(posit);
 
-               }else{
+               } else {
                    MangaC posi = mangaCS.get(position);
                    String r = posi.getK().toString();
                    myref.child(r).setValue(null);
                }
 
-
+           }
 
            }
        });

@@ -1,5 +1,6 @@
 package com.example.toshokan_manga.ui.favorite;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
@@ -22,6 +23,7 @@ import com.example.toshokan_manga.MangaC;
 import com.example.toshokan_manga.MyAdapter;
 import com.example.toshokan_manga.R;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -35,6 +37,10 @@ public class FavoriteFragment extends Fragment {
     View v;
     DatabaseReference reference1;
 
+    FirebaseUser user;
+    private FirebaseAuth mAuth;
+    private ConstraintLayout listcon;
+    private  ConstraintLayout txtcon;
 
     public JsonArrayRequest request;
     public RequestQueue requestQueue;
@@ -62,34 +68,50 @@ public class FavoriteFragment extends Fragment {
         recyclerView1 = v.findViewById(R.id.fav_recycler);
         recyclerView1.setHasFixedSize(true);
         recyclerView1.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+
+
+            progressBar1 = v.findViewById(R.id.fav_progress);
+            mangacs = new ArrayList<MangaC>();
+            listcon = v.findViewById(R.id.favo_const);
+            txtcon = v.findViewById(R.id.favo_text);
+            mAuth = FirebaseAuth.getInstance();
+            user = mAuth.getCurrentUser();
+
+        if (user !=null) {
+            listcon.setVisibility(View.VISIBLE);
+            txtcon.setVisibility(View.GONE);
         reference1 = FirebaseDatabase.getInstance().getReference("Users")
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .child("favourites");
-        progressBar1 = v.findViewById(R.id.fav_progress);
-        mangacs = new ArrayList<MangaC>();
 
         progressBar1.setVisibility(View.VISIBLE);
-        reference1.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                mangacs.clear();
-                progressBar1.setVisibility(View.GONE);
+            reference1.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    mangacs.clear();
+                    progressBar1.setVisibility(View.GONE);
 
-                for (DataSnapshot dataSnapshot1:dataSnapshot.getChildren()){
-                    MangaC manga = dataSnapshot1.getValue(MangaC.class);
-                    mangacs.add(manga);
+                    for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                        MangaC manga = dataSnapshot1.getValue(MangaC.class);
+                        mangacs.add(manga);
+
+                    }
+                    adapter1 = new MyAdapter(mangacs, getActivity());
+                    recyclerView1.setAdapter(adapter1);
 
                 }
-                adapter1= new MyAdapter(mangacs,getActivity());
-                recyclerView1.setAdapter(adapter1);
 
-            }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Toast.makeText(getActivity(), databaseError.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            });
+        }else {
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(getActivity(), databaseError.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        });
+            listcon.setVisibility(View.GONE);
+            txtcon.setVisibility(View.VISIBLE);
+        }
 
     return v;
     }
