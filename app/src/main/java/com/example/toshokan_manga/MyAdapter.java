@@ -59,6 +59,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>  {
                 .placeholder(R.drawable.background_img)
                 .into(holder.imageViewbg);
 
+
+
         holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

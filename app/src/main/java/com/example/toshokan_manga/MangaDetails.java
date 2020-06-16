@@ -3,12 +3,16 @@ package com.example.toshokan_manga;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -22,6 +26,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MangaDetails extends AppCompatActivity {
     private TextView textViewtitle;
     private TextView textViewmangaka;
@@ -32,12 +39,24 @@ public class MangaDetails extends AppCompatActivity {
     private Button backbttn;
     private Button chaptersb;
     private Button detaitlsb;
-    private Button favoriteb;
     private ConstraintLayout detailslayout;
     private ConstraintLayout chapterslayout;
     DatabaseReference ref ;
+    FirebaseDatabase database;
     DatabaseReference reference1;
+    DatabaseReference reference2;
     ListView listView;
+    private RecyclerView chapterview;
+    private List<chapters> chaptersList;
+    private chapters chapterss;
+    chapters chp ;
+    private RecyclerView.Adapter adapter;
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -53,12 +72,15 @@ public class MangaDetails extends AppCompatActivity {
         imageView =findViewById(R.id.manga_image);
         descrep = findViewById(R.id.desc_text);
         listView = findViewById(R.id.listview1);
+        chapterview = findViewById(R.id.chapterrecyclerview);
         backbttn = findViewById(R.id.backto_bttn);
         chaptersb = findViewById(R.id.chapters_bttn);
         detaitlsb = findViewById(R.id.details_bttn);
-        favoriteb = findViewById(R.id.fav_bttn);
         detailslayout = findViewById(R.id.details_layout);
         chapterslayout = findViewById(R.id.chapters_layout);
+        chapterview.setHasFixedSize(true);
+        chapterview.setLayoutManager(new LinearLayoutManager(this));
+        chaptersList = new ArrayList<>();
 
         ref = FirebaseDatabase.getInstance().getReference().child("Manga");
         reference1 = ref.child("categories");
@@ -86,13 +108,6 @@ detaitlsb.setOnClickListener(new View.OnClickListener() {
     public void onClick(View v) {
         detailslayout.setVisibility(View.VISIBLE);
         chapterslayout.setVisibility(View.GONE);
-    }
-});
-
-favoriteb.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-
     }
 });
 
@@ -127,6 +142,34 @@ favoriteb.setOnClickListener(new View.OnClickListener() {
                 Toast.makeText(MangaDetails.this, databaseError.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
+
+
+
+       reference2 = ref.child("chapters");
+        reference2.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                chaptersList.clear();
+                for (DataSnapshot chapsanp: dataSnapshot.getChildren()){
+
+                    chapters chp = chapsanp.getValue(chapters.class);
+                    chaptersList.add(chp);
+
+                }
+                adapter = new MyChapterAdapter(chaptersList,this);
+                chapterview.setAdapter(adapter);
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+
 
 
 

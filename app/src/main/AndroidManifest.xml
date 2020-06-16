@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".MangaDetails"></activity>
+        <activity android:name=".MangaDetails" />
         <activity android:name=".Favorite" />
         <activity android:name=".Manga_List" />
         <activity android:name=".Latest_Views" />
