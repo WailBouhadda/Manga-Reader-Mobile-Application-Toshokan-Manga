@@ -112,6 +112,9 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
+
+
+
     }
     private void loadUserInformation() {
 
@@ -128,10 +131,6 @@ public class HomeActivity extends AppCompatActivity {
                 String email = dataSnapshot.child("email").getValue().toString();
                 textViewemail.setText(email);
                 textViewname.setText(username);
-
-             Toast.makeText(HomeActivity.this,"youre logged in",Toast.LENGTH_LONG).show();
-
-
 
             }
 

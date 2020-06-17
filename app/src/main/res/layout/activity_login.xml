@@ -121,22 +121,6 @@
                     android:layout_height="58dp">
 
                     <TextView
-                        android:id="@+id/text_view_forget_password"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="right"
-                        android:paddingTop="5dp"
-                        android:text="Forgot Password?"
-                        android:textSize="9dp"
-                        android:textStyle="bold|italic"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.934"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.097" />
-
-                    <TextView
                         android:id="@+id/text_view_Skip"
                         android:layout_width="75dp"
                         android:layout_height="wrap_content"

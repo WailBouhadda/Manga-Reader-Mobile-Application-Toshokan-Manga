@@ -86,7 +86,7 @@ public class LatestViewsFragment extends Fragment {
             txtcon.setVisibility(View.GONE);
         reference1 = FirebaseDatabase.getInstance().getReference("Users")
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .child("latest view");
+                .child("latestview");
         reference1.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -110,6 +110,7 @@ public class LatestViewsFragment extends Fragment {
         });
         }else {
 
+            progressBar1.setVisibility(View.GONE);
             listcon.setVisibility(View.GONE);
             txtcon.setVisibility(View.VISIBLE);
         }

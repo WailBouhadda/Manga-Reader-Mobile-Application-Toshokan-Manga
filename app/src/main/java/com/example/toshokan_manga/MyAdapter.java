@@ -48,7 +48,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>  {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         final MangaC mangaC = mangaCS.get(position);
         reference = FirebaseDatabase.getInstance().getReference().child("Manga_list");
 
@@ -68,10 +68,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>  {
                 String p = mangaC.getK().toString();
                 intent.putExtra("pi" ,p);
                 v.getContext().startActivity(intent);
-                if (FirebaseAuth.getInstance().getCurrentUser() == null) {
+                if (FirebaseAuth.getInstance().getCurrentUser() != null) {
                 DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference("Users")
                         .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                        .child("latest view");
+                        .child("latestview");
                 reference1.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -87,13 +87,39 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>  {
                 });
 
                 MangaC posit = mangaCS.get(position);
-                String a = posit.getK().toString();
+                    String a = posit.getK().toString();
                 reference1.child(a).setValue(posit);
 
                 }
             }
         });
 
+
+        //Check if favorite
+
+        if (FirebaseAuth.getInstance().getCurrentUser() != null){
+            DatabaseReference favref = FirebaseDatabase.getInstance().getReference("Users")
+                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                    .child("favourites");
+            MangaC posit = mangaCS.get(position);
+            final String a = posit.getK().toString();
+            favref.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.hasChild(a)) {
+                        holder.favo.setChecked(true);
+
+                    }else {
+                        holder.favo.setChecked(false);
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+        }
 
         ///Add Favourite
 
@@ -107,8 +133,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>  {
 
 
                DatabaseReference myref = FirebaseDatabase.getInstance().getReference("Users")
-                       .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                       .child("favourites");
+                           .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                           .child("favourites");
                myref.addValueEventListener(new ValueEventListener() {
                    @Override
                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

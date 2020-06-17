@@ -143,9 +143,6 @@ progressBar.setVisibility(View.VISIBLE);
             @Override
             public void onComplete(@NonNull Task<Void> task) {
 
-                progressBar.setVisibility(View.GONE);
-
-
                 if (task.isSuccessful()) {
 
                     progressBar.setVisibility(View.GONE);
