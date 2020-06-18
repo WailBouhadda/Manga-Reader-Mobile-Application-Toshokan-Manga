@@ -39,7 +39,11 @@ import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -129,28 +133,48 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 progressBar.setVisibility(View.VISIBLE);
         username = Objects.requireNonNull(mAuth.getCurrentUser()).getDisplayName();
         email = mAuth.getCurrentUser().getEmail();
-        User user = new User(
+        final User user = new User(
                 username,
                 email
         );
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Users");
 
 
-        FirebaseDatabase.getInstance().getReference("Users")
-                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+    @Override
+    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+        if (dataSnapshot.hasChild(FirebaseAuth.getInstance().getCurrentUser().getUid())){
+            Toast.makeText(MainActivity.this, "You are already regestred ...!", Toast.LENGTH_SHORT).show();
+        }else {
+            FirebaseDatabase.getInstance().getReference("Users")
+                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                    .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
 
 
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
 
-                if (task.isSuccessful()) {
+                    if (task.isSuccessful()) {
 
-                    progressBar.setVisibility(View.GONE);
-                    Toast.makeText(getApplicationContext(),"Registration Successfull",Toast.LENGTH_SHORT).show();
+                        progressBar.setVisibility(View.GONE);
+                        Toast.makeText(getApplicationContext(),"Registration Successfull",Toast.LENGTH_SHORT).show();
 
+                    }
                 }
-            }
-        });
+            });
+
+
+        }
+
+    }
+
+    @Override
+    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+    }
+});
 
     }
 

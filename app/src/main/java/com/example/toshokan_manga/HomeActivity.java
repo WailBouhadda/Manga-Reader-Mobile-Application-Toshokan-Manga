@@ -100,7 +100,7 @@ public class HomeActivity extends AppCompatActivity {
                 int menuId = destination.getId();
                 switch (menuId){
                     case R.id.nav_account:
-                        fab.setVisibility(View.VISIBLE);
+                        fab.setVisibility(View.GONE);
                         break;
                     default:
                         fab.setVisibility(View.GONE);
@@ -127,10 +127,11 @@ public class HomeActivity extends AppCompatActivity {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.hasChild("username")){
              String username = dataSnapshot.child("username").getValue().toString();
                 String email = dataSnapshot.child("email").getValue().toString();
                 textViewemail.setText(email);
-                textViewname.setText(username);
+                textViewname.setText(username);}
 
             }
 

@@ -33,7 +33,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_register);
 
         findViewById(R.id.text_view_Skip).setOnClickListener(this);
-        progressBar = (ProgressBar) findViewById(R.id.progressbar);
+        progressBar = (ProgressBar) findViewById(R.id.progrbar);
         editTextusername = (EditText) findViewById(R.id.text_name);
         editTextemail = (EditText) findViewById(R.id.text_email);
         editTextpassword = (EditText) findViewById(R.id.edit_text_password);
@@ -86,7 +86,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         
 
 
-        progressBar.setVisibility(View.VISIBLE);
+
 
 
 
@@ -94,7 +94,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-
+                progressBar.setVisibility(View.VISIBLE);
 
 
 
