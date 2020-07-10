@@ -20,6 +20,9 @@
 #### Login/Register using Facebook/Google:
 
 
+![77](https://user-images.githubusercontent.com/47559086/87177891-a8466200-c2dc-11ea-8813-d7c65aa79461.jpg)
+
+
 #### last update :
 
 
@@ -36,6 +39,15 @@
 
 
 ![6](https://user-images.githubusercontent.com/47559086/87175761-67991980-c2d9-11ea-8c20-f4af099db897.jpg)
+
+
+
+#### Chapters list :
+
+
+
+![5](https://user-images.githubusercontent.com/47559086/87177959-c44a0380-c2dc-11ea-8855-006e4107eec3.png)
+
 
 
 #### Manga :
